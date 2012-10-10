@@ -20,18 +20,13 @@ module Formtastic
       linker = self.template.content_tag(:ul, linker, :class => "language-selection")
 
       tabs_javascript = "
-        $('.language-tabs-#{index}').tabs().bind('tabsshow',function(event,ui){
-          for(var p in CKEDITOR.instances){
-            if (CKEDITOR.instances.hasOwnProperty(p)){
-              CKEDITOR.instances[p].resize(); 
-            }
-          }
-        });
+        $('.language-tabs-#{index}').tabs();
       "
 
       # self.template.content_tag(:div, linker + fields, :class => "language-tabs-#{index}") + self.template.content_tag(:script, tabs_javascript.html_safe, :type => "text/javascript")
       html = self.template.content_tag(:div, linker + fields, :class => "language-tabs-#{index}")
       html << self.template.javascript_tag(tabs_javascript)
+
     end
   end
 end
